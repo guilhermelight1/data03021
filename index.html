@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>flights</title>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.8/d3.min.js"></script>
+  
+  <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+  
+   
+    <script type="text/javascript" src="d3.geom.js"></script> 
+  
+  
+  <style>
+    body, html {
+      width: 1300px;
+      height: 100%;
+    }
+
+    svg {
+      width:50%;
+      height:100%;
+      float: left;
+    }
+
+    circle.airbnb {
+      fill: #e00007;
+      opacity: 0.6;
+    }
+
+    .axis {
+      font-family: arial;
+      font-size: 0.7em;
+    }
+    
+    text {
+      fill: black;
+      stroke: none;
+    }
+      
+    .label {
+      font-size: 1.5em;
+    }
+      
+    path {
+      fill: none;
+      stroke: black;
+      stroke-width: 2px;
+    }
+    .tick {
+      fill: none;
+      stroke: black;
+    }
+    
+    circle {
+      opacity: 0.9;
+      stroke: none;
+      fill: red;
+    }
+    
+    .line {
+      fill: none;
+      stroke: #e00007;
+      stroke-width: 1px;
+    }
+	
+
+
+
+
+	
+#states path {
+  fill: #ccc;
+  stroke: #fff;
+}
+
+path.arc {
+  pointer-events: none;
+  fill: none;
+  stroke: #0000ff;
+  display: none;
+}
+
+path.cell {
+  fill: none;
+  pointer-events: all;
+}
+
+circle {
+  fill: steelblue;
+  fill-opacity: .8;
+  stroke: #f00;
+}
+
+#cells.voronoi path.cell {
+  stroke: brown;
+}
+
+#cells g:hover path.arc {
+  display: inherit;
+}	
+
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <div style=";font-size:18px;">
+      <input type="checkbox" id="voronoi"> <label for="voronoi">show Voronoi</label>
+    </div>
+	
+<script type="text/javascript" src="script.js"></script>
+	</head>
+
+
+<body>
+    <svg id="map"></svg>
+    <svg id="chart">
+      <text x="50%" y="40" id="heading" font-size="1.5em" text-anchor="middle" font-family="futura">SF</text>
+</svg>
+
+
+
+
+  <script>
+    // load data with queue
+    var url1 = "br2.json";
+    var url2 = "listing_count2.json";
+    var url3 = "estados3.csv";
+    var url4 = "flights.csv";
+    var url5 = "airports.csv";
+
+    
+    var q = d3_queue.queue(3)
+								    .defer(d3.json, url1)
+    								.defer(d3.json, url2)
+    								.defer(d3.csv, url3)
+    								.defer(d3.csv, url4)
+    								.defer(d3.csv, url5)
+    								.awaitAll(draw);
+  </script>
+	
+</body>
+</html>
